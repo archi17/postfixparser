@@ -1,0 +1,12 @@
+//
+// Created by artur on 03.11.16.
+//
+
+#ifndef POSTFIXPARSER_SYMBOL_H
+#define POSTFIXPARSER_SYMBOL_H
+
+enum CSymbol {
+    VAR, NUM, PLUS, MINUS, TIMES, DIVIDE, TILDE, WHITESPACE, ERROR
+};
+
+#endif //POSTFIXPARSER_SYMBOL_H

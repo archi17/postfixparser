@@ -10,7 +10,7 @@
 
 class CNode {
 public:
-    CNode(CToken *pcToken);
+    CNode(const CToken *pcToken);
 
     void vSetLeftChild(const CNode *pcNode)  { pc_left_child  = pcNode; }
     void vSetRightChild(const CNode *pcNode) { pc_right_child = pcNode; }

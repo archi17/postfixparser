@@ -4,6 +4,6 @@
 
 #include "CNode.h"
 
-CNode::CNode(CToken *pcToken) : pc_token(pcToken) {
+CNode::CNode(const CToken *pcToken) : pc_token(pcToken) {
 
 }

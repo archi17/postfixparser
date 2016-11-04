@@ -5,14 +5,20 @@
 #ifndef POSTFIXPARSER_CPARSER_H
 #define POSTFIXPARSER_CPARSER_H
 
+#include <string>
+#include <vector>
+#include "CNode.h"
 
 class CParser {
 public:
-    enum Symbol {
-        VAR, LITERAL, PLUS, MINUS, TIMES, DIVIDE, TILDE, WHITESPACE, ERROR
-    };
 
-    void v_parse();
+    void vTokenize(const char *sExpression);
+    const std::vector<CToken *>& cGetTokens() { return c_tokens; }
+
+private:
+    std::vector<CToken*> c_tokens;
+
+    CSymbol c_get_symbol(const char *pcChar);
 };
 
 
