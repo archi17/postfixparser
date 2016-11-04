@@ -4,16 +4,17 @@
 
 #include "CParser.h"
 
-CNode* CParser::vParse(const std::string &sExpression) {
+CTree* CParser::vParse(const std::string &sExpression) {
     strcpy(pc_expression, sExpression.c_str());
     v_tokenize();
-    CNode* c_root = 0;
+    CNode* pc_root = 0;
     if(c_log.empty()) {
         c_iter_beg = c_tokens.rbegin();
         c_iter_end = c_tokens.rend();
-        c_root = pc_parse();
+        pc_root = pc_parse();
     }
-    return c_root;
+
+    return new CTree(pc_root);
 }
 
 CNode* CParser::pc_parse() {

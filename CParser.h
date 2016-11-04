@@ -7,6 +7,7 @@
 
 #include "CNode.h"
 #include "CLogEntry.h"
+#include "CTree.h"
 
 #include <string>
 #include <vector>
@@ -14,7 +15,7 @@
 
 class CParser {
 public:
-    CNode* vParse(const std::string& sExpression);
+    CTree* vParse(const std::string& sExpression);
 
 private:
     char *pc_expression;
