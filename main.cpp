@@ -1,19 +1,17 @@
-#include <iostream>
-#include <vector>
+
 #include "CParser.h"
 
-void print(const std::vector<CToken *>& cTokens);
+class PrintVisitor : public INodeVisitor {
+public:
+    void vVisit(const CNode* pcNode) {
+        std::cout << *(pcNode->pcGetToken());
+    }
+};
 
 int main() {
     CParser c_parser;
-    c_parser.vTokenize("trzy jeden dwa + 22+ *  ad ");
-    const std::vector<CToken *> c_tokens = c_parser.cGetTokens();
-    print(c_tokens);
-    return 0;
-}
+    CNode* c_node = c_parser.vParse("x f ab+*");
+    c_node->vVisitInOrder(new PrintVisitor);
 
-void print(const std::vector<CToken *>& cTokens) {
-    for(int i = 0; i < cTokens.size(); i++) {
-        std::cout << *cTokens[i] << std::endl;
-    }
+    return 0;
 }

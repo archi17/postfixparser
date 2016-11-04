@@ -13,11 +13,13 @@
 
 class CToken;
 
-std::ostream& operator<<(std::ostream& cOstream, const CToken& cToken);
+std::ostream& operator<<(std::ostream& cOStream, const CToken& cToken);
 
 class CToken {
 public:
     CToken(const CSymbol cSymbol, const char* pcBeg, const char *pcEnd);
+
+    CSymbol cGetSymbol() const { return c_symbol; }
 
 private:
     const CSymbol c_symbol;
