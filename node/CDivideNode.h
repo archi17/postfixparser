@@ -13,6 +13,7 @@ public:
     CDivideNode(const std::string& sToken) : CBinaryNode(sToken) {}
 
     int iEvaluate() const;
+    void vPrintInfix(std::ostream& cOstream) const;
 };
 
 

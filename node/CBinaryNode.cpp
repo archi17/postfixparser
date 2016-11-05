@@ -6,9 +6,7 @@
 #include "CBinaryNode.h"
 
 void CBinaryNode::vPrintInfix(std::ostream &cOstream) const {
-    cOstream << "(";
     pcGetLeftChild()->vPrintInfix(cOstream);
     cOstream << sGetToken();
     pcGetRightChild()->vPrintInfix(cOstream);
-    cOstream << ")";
 }

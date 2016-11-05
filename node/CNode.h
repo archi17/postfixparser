@@ -6,6 +6,7 @@
 #define POSTFIXPARSER_CNODE_H
 
 #include <string>
+#include <iostream>
 
 class CNode {
 public:
