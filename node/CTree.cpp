@@ -13,3 +13,7 @@ CTree::CTree(const CNode *pcRoot) : pc_root(pcRoot) {
         }
 }
 
+CTree::~CTree() {
+    delete pc_root;
+}
+

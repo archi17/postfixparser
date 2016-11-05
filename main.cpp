@@ -1,5 +1,6 @@
 
 #include "CParser.h"
+#include <iostream>
 
 int main() {
     CParser c_parser;
@@ -13,14 +14,10 @@ int main() {
         std::cout << *c_beg++ << " ";
     }
 
-
-
     CDefinedVariables c_def_vars;
     std::cout << c_tree->iEvaluate(c_def_vars) << std::endl;
 
-    CVariables c_vars = c_tree->sGetVars();
-    CVariables::const_iterator c_v_beg = c_vars.begin();
-    CVariables::const_iterator c_v_end = c_vars.end();
+    delete c_tree;
 
     //while(c_v_beg != c_v_end)
       //  std::cout << *c_beg++ << std::endl;

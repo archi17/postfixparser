@@ -9,7 +9,7 @@ CTree* CParser::vParse(const std::string &sExpression) {
     s_expression = sExpression;
     CTree *c_tree = new CTree(pc_parse_expression());
     if(e_symbol == S_ERROR || i_pos >= 0) {
-        std::cout << i_pos;
+       // ERROR OR WARNING
     }
     return c_tree;
 }

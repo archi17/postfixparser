@@ -14,6 +14,7 @@
 class CTree {
 public:
     CTree(const CNode *pcRoot);
+    ~CTree();
 
     int iEvaluate(CDefinedVariables& cVars) const {  return pc_root->iEvaluate(cVars); }
 

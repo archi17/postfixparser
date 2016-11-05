@@ -8,10 +8,8 @@
 #include "../utils.h"
 
 #include <string>
-#include <iostream>
 #include <set>
 #include <map>
-#include <string>
 #include <vector>
 
 typedef std::set<std::string> CVariables;
@@ -24,6 +22,7 @@ class CNode
 {
 public:
     CNode(const std::string& sToken) : s_token(sToken) {}
+    virtual ~CNode() { /* Doesn't have any children, nothing to do */ };
 
     const std::string& sGetToken() const { return s_token; }
 

@@ -6,20 +6,20 @@
 #define POSTFIXPARSER_CBINARYNODE_H
 
 #include "CUnaryNode.h"
-#include "../ESymbol.h"
+#include "ESymbol.h"
 
-#include <iostream>
 
 class CBinaryNode : public CUnaryNode {
 public:
     CBinaryNode(const std::string& sToken) : CUnaryNode(sToken) {}
+    virtual ~CBinaryNode() { delete pc_right_child; }
 
     void vSetRightChild(const CNode* cNode) { pc_right_child = cNode; }
     const CNode* pcGetRightChild() const { return pc_right_child; }
 
     virtual void vLevelInOrder(CLevels& cLevels, int iLevel) const ;
     virtual void vInsertInfix(CInfix& cInfix) const;
-    void vRegisterVar(CVariables &cVars) const;
+    virtual void vRegisterVar(CVariables &cVars) const;
 
 private:
     const CNode* pc_right_child;

@@ -5,13 +5,13 @@
 #ifndef POSTFIXPARSER_CPARSER_H
 #define POSTFIXPARSER_CPARSER_H
 
-#include "node/CTree.h"
-#include "ESymbol.h"
+
+#include "node/ESymbol.h"
 #include "utils.h"
 
-#include "node/CNode.h"
-#include "node/CBinaryNode.h"
+#include "node/CTree.h"
 #include "node/CUnaryNode.h"
+#include "node/CBinaryNode.h"
 
 class CParser {
 public:

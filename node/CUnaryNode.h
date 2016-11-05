@@ -10,6 +10,7 @@
 class CUnaryNode : public CNode {
 public:
     CUnaryNode(const std::string& sToken) : CNode(sToken) {};
+    virtual ~CUnaryNode() { delete pc_left_child; }
 
     void vSetLeftChild(const CNode* cNode) { pc_left_child = cNode; }
     const CNode* pcGetLeftChild() const { return pc_left_child; }
