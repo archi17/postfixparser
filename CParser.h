@@ -28,8 +28,11 @@ public:
 private:
     long i_pos;
     std::string s_expression;
+    ESymbol e_symbol;
 
     CNode* pc_parse();
+    void v_skip(ESymbol eSymbol);
+    CNode *v_parse_terminal(ESymbol eSymbol);
 };
 
 
