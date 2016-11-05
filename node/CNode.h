@@ -14,15 +14,24 @@
 #include <string>
 #include <vector>
 
+typedef std::set<std::string> CVariables;
+typedef std::map<std::string, int> CDefinedVariables;
+typedef std::vector<std::string> CLevel;
+typedef std::vector<std::string> CInfix;
+typedef std::vector<CLevel> CLevels;
+
 class CNode
 {
 public:
     CNode(const std::string& sToken) : s_token(sToken) {}
+
     const std::string& sGetToken() const { return s_token; }
-    virtual int iEvaluate(std::map<std::string, int> &cVars) const = 0;
-    virtual void vPrintInfix(std::ostream& cOstream) const;
-    virtual void vRegisterVar(std::set<std::string> &cVars) const;
-    virtual void vLevelInOrder(std::vector<std::vector<std::string> > &cLevels, int iLevel) const;
+
+    virtual int iEvaluate(CDefinedVariables &cVars) const = 0;
+
+    virtual void vInsertInfix(CInfix& cInfix) const;
+    virtual void vRegisterVar(CVariables &cVars) const;
+    virtual void vLevelInOrder(CLevels &cLevels, int iLevel) const;
 
 private:
     const std::string s_token;
@@ -32,15 +41,15 @@ class CNumNode : public CNode
 {
 public:
     CNumNode(const std::string& sToken) : CNode(sToken) {};
-    int iEvaluate(std::map<std::string, int> &cVars) const;
+    int iEvaluate(CDefinedVariables &cVars) const;
 };
 
 class CVarNode : public CNode
 {
 public:
     CVarNode(const std::string& sToken) : CNode(sToken) {}
-    int iEvaluate(std::map<std::string, int> &cVars) const;
-    void vRegisterVar(std::set<std::string> &cVars) const;
+    int iEvaluate(CDefinedVariables &cVars) const;
+    void vRegisterVar(CVariables &cVars) const;
 };
 
 #endif //POSTFIXPARSER_CNODE_H

@@ -5,15 +5,13 @@
 #ifndef POSTFIXPARSER_CPARSER_H
 #define POSTFIXPARSER_CPARSER_H
 
-#include "CTree.h"
+#include "node/CTree.h"
 #include "ESymbol.h"
 #include "utils.h"
 
 #include "node/CNode.h"
 #include "node/CBinaryNode.h"
 #include "node/CUnaryNode.h"
-
-
 
 class CParser {
 public:
@@ -27,6 +25,7 @@ private:
     void v_skip(ESymbol eSymbol);
     CNode* pc_parse_expression();
     CNode *pc_parse_terminal(ESymbol eSymbol);
+    CNode *pc_parse_or_default();
     CBinaryNode *pc_parse_children(CBinaryNode *cBinaryNode);
 };
 

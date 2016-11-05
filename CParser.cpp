@@ -9,7 +9,7 @@ CTree* CParser::vParse(const std::string &sExpression) {
     s_expression = sExpression;
     CTree *c_tree = new CTree(pc_parse_expression());
     if(e_symbol == S_ERROR || i_pos >= 0) {
-        // error or warning;
+        std::cout << i_pos;
     }
     return c_tree;
 }
@@ -31,7 +31,7 @@ CNode* CParser::pc_parse_expression() {
             c_node = pc_parse_children(new CDivideNode(s_token));
         } else if (e_symbol == S_TILDE) {
             CTildeNode *c_tilde_node = new CTildeNode(s_token);
-            c_tilde_node->vSetLeftChild(pc_parse_expression());
+            c_tilde_node->vSetLeftChild(pc_parse_or_default());
             c_node = c_tilde_node;
         } else if (e_symbol == S_NUM || e_symbol == S_VAR) {
             c_node = pc_parse_terminal(e_symbol);
@@ -59,25 +59,18 @@ CNode* CParser::pc_parse_terminal(ESymbol eSymbol) {
     return c_node;
 }
 
+CNode* CParser::pc_parse_or_default() {
+    CNode *pc_child = pc_parse_expression();
+    if(pc_child == 0) {
+        pc_child = new CNumNode("1");
+        // warning;
+    }
+    return pc_child;
+}
+
 CBinaryNode* CParser::pc_parse_children(CBinaryNode* cBinaryNode) {
-    CNode *pc_left_child = pc_parse_expression();
-    CNode *pc_right_child = pc_parse_expression();
-
-    CNode *pc_default_node = new CNumNode("1");
-
-    if(pc_right_child != 0) {
-        cBinaryNode->vSetRightChild(pc_right_child);
-    } else {
-        cBinaryNode->vSetRightChild(pc_default_node);
-        // warning();
-    }
-
-    if(pc_left_child != 0) {
-        cBinaryNode->vSetLeftChild(pc_left_child);
-    } else {
-        cBinaryNode->vSetLeftChild(pc_default_node);
-        // warning();
-    }
+    cBinaryNode->vSetRightChild(pc_parse_or_default());
+    cBinaryNode->vSetLeftChild(pc_parse_or_default());
 
     return cBinaryNode;
 }

@@ -4,11 +4,11 @@
 
 #include "CUnaryNode.h"
 
-void CUnaryNode::vPrintInfix(std::ostream &cOstream) const {
-    cOstream << sGetToken();
-    pcGetLeftChild()->vPrintInfix(cOstream);
+void CUnaryNode::vInsertInfix(CInfix& cInfix) const {
+    cInfix.push_back(sGetToken());
+    pcGetLeftChild()->vInsertInfix(cInfix);
 }
 
-int CTildeNode::iEvaluate(std::map<std::string, int> &cVars) const {
+int CTildeNode::iEvaluate(CDefinedVariables &cVars) const {
     return -pcGetLeftChild()->iEvaluate(cVars);
 }

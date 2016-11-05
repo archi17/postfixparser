@@ -14,7 +14,7 @@ public:
     void vSetLeftChild(const CNode* cNode) { pc_left_child = cNode; }
     const CNode* pcGetLeftChild() const { return pc_left_child; }
 
-    virtual void vPrintInfix(std::ostream& cOstream) const;
+    virtual void vInsertInfix(CInfix& cInfix) const;
 
 private:
     const CNode* pc_left_child;
@@ -24,8 +24,7 @@ private:
 class CTildeNode : public CUnaryNode {
 public:
     CTildeNode(const std::string& sToken) : CUnaryNode(sToken) {}
-
-    int iEvaluate(std::map<std::string, int> &cVars) const;
+    int iEvaluate(CDefinedVariables &cVars) const;
 };
 
 #endif //POSTFIXPARSER_CUNARYNODE_H
