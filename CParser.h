@@ -26,7 +26,10 @@ public:
     CTree* vParse(const std::string& sExpression);
 
 private:
-    CNode* pc_parse(const std::string& sExpression, long& iPos);
+    long i_pos;
+    std::string s_expression;
+
+    CNode* pc_parse();
 };
 
 
