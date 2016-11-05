@@ -8,30 +8,14 @@
       <sourceFolder url="file://$MODULE_DIR$/CTree.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/utils.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/ESymbol.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/node/CBinaryNode.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/node/CUnaryNode.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/node/CDivideNode.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/node/CMinusNode.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/node/CPlusNode.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/node/CNode.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/node/CUnaryNode.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/node/CDivideNode.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/node/CNumNode.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/node/CTimesNode.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/node/CNode.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/node/CTildeNode.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/node/CVarNode.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/node/CVarNode.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/node/CPlusNode.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/node/CMinusNode.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/node/CTimesNode.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/node/CBinaryNode.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/node/CTildeNode.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/node/CNumNode.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/node/CUnaryNode.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/node/CBinaryNode.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/node/CNode.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/node/CUnaryNode.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CTree.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CParser.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CLogEntry.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CLogEntry.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/ESymbol.h" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />

@@ -10,14 +10,16 @@
 
 #include <sstream>
 #include <string>
-
+#include <vector>
 
 class CTree {
 public:
     CTree(const CNode *pcRoot);
 
     std::string sToInfix() const;
-    int iEvaluate() const;
+    std::string sToLevelInOrder() const;
+    std::set<std::string> sGetVariables() const;
+    int iEvaluate(std::map<std::string, int>& cVars) const;
 
 private:
     const CNode *pc_root;

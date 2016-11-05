@@ -20,4 +20,12 @@ private:
     const CNode* pc_left_child;
 };
 
+
+class CTildeNode : public CUnaryNode {
+public:
+    CTildeNode(const std::string& sToken) : CUnaryNode(sToken) {}
+
+    int iEvaluate(std::map<std::string, int> &cVars) const;
+};
+
 #endif //POSTFIXPARSER_CUNARYNODE_H

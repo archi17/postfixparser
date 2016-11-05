@@ -8,3 +8,7 @@ void CUnaryNode::vPrintInfix(std::ostream &cOstream) const {
     cOstream << sGetToken();
     pcGetLeftChild()->vPrintInfix(cOstream);
 }
+
+int CTildeNode::iEvaluate(std::map<std::string, int> &cVars) const {
+    return -pcGetLeftChild()->iEvaluate(cVars);
+}
