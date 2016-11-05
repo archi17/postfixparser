@@ -3,84 +3,62 @@
 //
 
 #include "CParser.h"
+#include "node/CNumNode.h"
 
 CTree* CParser::vParse(const std::string &sExpression) {
-    strcpy(pc_expression, sExpression.c_str());
-    v_tokenize();
-    CNode* pc_root = 0;
-    if(c_log.empty()) {
-        c_iter_beg = c_tokens.rbegin();
-        c_iter_end = c_tokens.rend();
-        pc_root = pc_parse();
-    }
-
-    return new CTree(pc_root);
+    long i_pos = sExpression.length() - 1;
+    return new CTree(pc_parse(sExpression, i_pos));
 }
 
-CNode* CParser::pc_parse() {
-    CNode *pc_node = 0;
+CNode* CParser::pc_parse(const std::string &sExpression, long& iPos) {
+    CNode *c_node = 0;
 
-    if(c_iter_beg != c_iter_end) {
-        CToken *pc_token = (*c_iter_beg++);
-        pc_node = new CNode(pc_token);
+    if(iPos >= 0) {
+        // Skip whitespaces
+        ESymbol e_symbol;
+        while(iPos >= 0 && (e_symbol = eGetSymbol(sExpression[iPos])) == S_WHITESPACE)
+            --iPos;
 
-        CSymbol c_symbol = pc_token->cGetSymbol();
-
-        if (c_symbol == S_TILDE) {
-            pc_node->vSetLeftChild(pc_parse());
-        } else if (c_symbol == S_PLUS || c_symbol == S_MINUS || c_symbol == S_TIMES || c_symbol == S_DIVIDE) {
-            pc_node->vSetRightChild(pc_parse());
-            pc_node->vSetLeftChild(pc_parse());
+        if(e_symbol == S_PLUS) {
+            CPlusNode *c_plus_node = new CPlusNode(sToString(sExpression[iPos]));
+            c_plus_node->vSetRightChild(pc_parse(sExpression, --iPos));
+            c_plus_node->vSetLeftChild(pc_parse(sExpression, --iPos));
+            c_node = c_plus_node;
+        } else if (e_symbol == S_MINUS) {
+            CMinusNode *c_minus_node = new CMinusNode(sToString(sExpression[iPos]));
+            c_minus_node->vSetRightChild(pc_parse(sExpression, --iPos));
+            c_minus_node->vSetLeftChild(pc_parse(sExpression, --iPos));
+            c_node = c_minus_node;
+        } else if (e_symbol == S_TIMES) {
+            CTimesNode *c_times_node = new CTimesNode(sToString(sExpression[iPos]));
+            c_times_node->vSetRightChild(pc_parse(sExpression, --iPos));
+            c_times_node->vSetLeftChild(pc_parse(sExpression, --iPos));
+            c_node = c_times_node;
+        } else if (e_symbol == S_DIVIDE) {
+            CDivideNode *c_divide_node = new CDivideNode(sToString(sExpression[iPos]));
+            c_divide_node->vSetRightChild(pc_parse(sExpression, --iPos));
+            c_divide_node->vSetLeftChild(pc_parse(sExpression,--iPos));
+            c_node = c_divide_node;
+        } else if (e_symbol == S_TILDE) {
+            CTildeNode *c_tilde_node = new CTildeNode(sToString(sExpression[iPos]));
+            c_tilde_node->vSetLeftChild(pc_parse(sExpression, --iPos));
+            c_node = c_tilde_node;
+        } else if (e_symbol == S_NUM) {
+            long i_end = iPos--;
+            // Find beginning of number
+            while(iPos >= 0 && (e_symbol = eGetSymbol(sExpression[iPos])) == S_NUM)
+                --iPos;
+            CNumNode *c_num_node = new CNumNode(sToString(sExpression, iPos + 1, i_end + 1));
+            c_node = c_num_node;
+        } else if (e_symbol == S_VAR) {
+            long i_end = iPos--;
+            // Find beginning of variable
+            while(iPos >= 0 && (e_symbol = eGetSymbol(sExpression[iPos])) == S_VAR)
+                --iPos;
+            CVarNode *c_var_node = new CVarNode(sToString(sExpression, iPos + 1, i_end + 1));
+            c_node = c_var_node;
         }
     }
 
-    return pc_node;
-}
-
-void CParser::v_tokenize() {
-    const char *pc_curr = pc_expression;
-    while(*pc_curr != '\0') {
-        const char *pc_beg = pc_curr;
-        CSymbol c_symbol = c_get_symbol(pc_curr++);
-
-        // Move pc_curr one past end of literal or variable
-        while(*pc_curr != '\0' && c_get_symbol(pc_curr) == c_symbol && (c_symbol == S_VAR || c_symbol == S_NUM))
-            pc_curr++;
-
-        if(c_symbol == S_ERROR)
-            v_error(pc_curr - pc_expression);
-        else if(c_symbol != S_WHITESPACE)
-            c_tokens.push_back(new CToken(c_symbol, pc_beg, pc_curr));
-    }
-}
-
-CSymbol CParser::c_get_symbol(const char *pcChar) const {
-    CSymbol c_symbol = S_ERROR;
-
-    if(isalpha(*pcChar))
-        c_symbol = S_VAR;
-    else if(isdigit(*pcChar))
-        c_symbol = S_NUM;
-    else if(isspace(*pcChar))
-        c_symbol = S_WHITESPACE;
-    else if(*pcChar == '+')
-        c_symbol = S_PLUS;
-    else if(*pcChar == '-')
-        c_symbol = S_MINUS;
-    else if(*pcChar == '*')
-        c_symbol = S_TIMES;
-    else if(*pcChar == '/')
-        c_symbol = S_DIVIDE;
-    else if(*pcChar == '~')
-        c_symbol = S_TILDE;
-
-    return c_symbol;
-}
-
-void CParser::v_error(int iPos) {
-    c_log.push_back(new CLogEntry(LEVEL_ERROR, iPos));
-}
-
-void CParser::v_warning(int iPos) {
-    c_log.push_back(new CLogEntry(LEVEL_WARNING, iPos));
+    return c_node;
 }

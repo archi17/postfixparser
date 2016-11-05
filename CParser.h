@@ -5,32 +5,28 @@
 #ifndef POSTFIXPARSER_CPARSER_H
 #define POSTFIXPARSER_CPARSER_H
 
-#include "CNode.h"
+
 #include "CLogEntry.h"
 #include "CTree.h"
+#include "ESymbol.h"
+#include "utils.h"
 
-#include <string>
-#include <vector>
-#include <cstring>
+#include "node/CNode.h"
+#include "node/CPlusNode.h"
+#include "node/CMinusNode.h"
+#include "node/CTimesNode.h"
+#include "node/CDivideNode.h"
+#include "node/CTildeNode.h"
+#include "node/CVarNode.h"
+
+
 
 class CParser {
 public:
     CTree* vParse(const std::string& sExpression);
 
 private:
-    char *pc_expression;
-    std::vector<CToken*> c_tokens;
-    std::vector<CLogEntry*> c_log;
-
-    std::vector<CToken *>::reverse_iterator c_iter_beg;
-    std::vector<CToken *>::reverse_iterator c_iter_end;
-
-    CNode* pc_parse();
-    void v_tokenize();
-    CSymbol c_get_symbol(const char *pcChar) const;
-
-    void v_warning(int iPos);
-    void v_error(int iPos);
+    CNode* pc_parse(const std::string& sExpression, long& iPos);
 };
 
 

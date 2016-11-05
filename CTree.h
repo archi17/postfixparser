@@ -6,11 +6,18 @@
 #define POSTFIXPARSER_CTREE_H
 
 
-#include "CNode.h"
+#include "node/CNode.h"
+
+#include <sstream>
+#include <string>
+
 
 class CTree {
 public:
     CTree(const CNode *pcRoot);
+
+    std::string sToInfix() const;
+    int iEvaluate() const;
 
 private:
     const CNode *pc_root;
