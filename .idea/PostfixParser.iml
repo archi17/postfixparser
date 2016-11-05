@@ -2,21 +2,24 @@
 <module type="CPP_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/CParser.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/utils.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/CParser.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/node/ESymbol.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/node/CUnaryNode.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/node/CNode.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/node/CBinaryNode.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/node/CTree.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/node/ESymbol.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/node/CUnaryNode.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/node/CBinaryNode.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/node/CNode.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/node/CTree.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CParser.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tree/ESymbol.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tree/CNode.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tree/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tree/CUnaryNode.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tree/CBinaryNode.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tree/CTree.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tree/ESymbol.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tree/CUnaryNode.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tree/CBinaryNode.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tree/CNode.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tree/CTree.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/CError.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/CError.h" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">

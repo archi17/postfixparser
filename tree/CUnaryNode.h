@@ -6,6 +6,7 @@
 #define POSTFIXPARSER_CUNARYNODE_H
 
 #include "CNode.h"
+#include "ESymbol.h"
 
 class CUnaryNode : public CNode {
 public:

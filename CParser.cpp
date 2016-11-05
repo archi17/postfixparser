@@ -4,13 +4,18 @@
 
 #include "CParser.h"
 
-CTree* CParser::vParse(const std::string &sExpression) {
+CTree* CParser::pcParse(const std::string &sExpression) {
+    c_errors.clear();
     i_pos = sExpression.length() - 1;
     s_expression = sExpression;
     CTree *c_tree = new CTree(pc_parse_expression());
+
     if(e_symbol == S_ERROR || i_pos >= 0) {
-       // ERROR OR WARNING
+        EErrorType e_error_type = e_symbol == S_ERROR ? ERR_ILLEGAL_SYMBOL : ERR_UNEXPECTED_SYMBOL;
+        v_skip(S_WHITESPACE);
+        v_error(e_error_type, i_pos);
     }
+
     return c_tree;
 }
 
@@ -63,7 +68,7 @@ CNode* CParser::pc_parse_or_default() {
     CNode *pc_child = pc_parse_expression();
     if(pc_child == 0) {
         pc_child = new CNumNode("1");
-        // warning;
+        v_error(ERR_MISSING_OPERAND, i_pos + 1);
     }
     return pc_child;
 }
@@ -73,4 +78,8 @@ CBinaryNode* CParser::pc_parse_children(CBinaryNode* cBinaryNode) {
     cBinaryNode->vSetLeftChild(pc_parse_or_default());
 
     return cBinaryNode;
+}
+
+void CParser::v_error(EErrorType eErrorType, long iPos) {
+    c_errors.push_back(CError(eErrorType, iPos));
 }

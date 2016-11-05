@@ -6,27 +6,36 @@
 #define POSTFIXPARSER_CPARSER_H
 
 
-#include "node/ESymbol.h"
+#include "tree/ESymbol.h"
+#include "CError.h"
 #include "utils.h"
 
-#include "node/CTree.h"
-#include "node/CUnaryNode.h"
-#include "node/CBinaryNode.h"
+#include "tree/CTree.h"
+#include "tree/CUnaryNode.h"
+#include "tree/CBinaryNode.h"
+
+#include <vector>
+
+typedef std::vector<CError> CErrors;
 
 class CParser {
 public:
-    CTree* vParse(const std::string& sExpression);
+    CTree* pcParse(const std::string &sExpression);
+    const CErrors& cGetErrors() const { return c_errors; }
 
 private:
     long i_pos;
     ESymbol e_symbol;
     std::string s_expression;
+    CErrors c_errors;
 
     void v_skip(ESymbol eSymbol);
     CNode* pc_parse_expression();
-    CNode *pc_parse_terminal(ESymbol eSymbol);
-    CNode *pc_parse_or_default();
-    CBinaryNode *pc_parse_children(CBinaryNode *cBinaryNode);
+    CNode* pc_parse_terminal(ESymbol eSymbol);
+    CNode* pc_parse_or_default();
+    CBinaryNode* pc_parse_children(CBinaryNode *cBinaryNode);
+
+    void v_error(EErrorType operand, long iPos);
 };
 
 
