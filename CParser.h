@@ -35,7 +35,7 @@ private:
     CNode* pc_parse_or_default();
     CBinaryNode* pc_parse_children(CBinaryNode *cBinaryNode);
 
-    void v_error(EErrorType operand, long iPos);
+    void v_error(EErrorType eErrorType, long iPos);
 };
 
 
